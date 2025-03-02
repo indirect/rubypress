@@ -4,11 +4,11 @@ describe "#comments" do
 
   let(:post_id){ 1 }
   let(:comment){ {:comment_parent => "", :content => "This is a test thing here.", :author => "John Adams", :author_url => "http://johnadamsforpresidentnow.com", :author_email => "johnadams@whitehouse.gov"} }
-  
+
   it "#newComment" do
     VCR.use_cassette("newComment") do
       COMMENT_ID = CLIENT.newComment({:post_id => post_id, :comment => comment})
-      COMMENT_ID.class.should eq(Fixnum)
+      COMMENT_ID.class.should eq(Integer)
     end
   end
 

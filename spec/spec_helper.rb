@@ -6,7 +6,7 @@ require 'tempfile'
 require_relative 'vcr_setup'
 
 def load_env(filename = '.env')
-  return unless File.exists?(filename)
+  return unless File.exist?(filename)
 
   File.foreach(filename) do |line|
     next if line.chomp.size == 0

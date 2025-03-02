@@ -1,5 +1,4 @@
 *.tmp
 *.swp
-.env
 *.gem
 .DS_Store

@@ -17,14 +17,17 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :webmock
   sensitive_data.each do |data|
-    c.filter_sensitive_data("<#{data}>") do 
+    c.filter_sensitive_data("<#{data}>") do
       CGI::escape(ENV[data]) if ENV[data]
     end
     c.filter_sensitive_data("<#{data}>") do
       ENV[data]
     end
   end
-  c.default_cassette_options = { match_requests_on: [:method] }
+  c.default_cassette_options = {
+    record: :all,
+    match_requests_on: [:method]
+  }
   c.before_playback(){|interaction|
     interaction.response.update_content_length_header
   }

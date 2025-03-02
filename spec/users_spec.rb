@@ -1,5 +1,6 @@
-describe "#users" do
+require "spec_helper"
 
+describe "#users" do
   let(:edited_profile_content){ {:first_name => "Johnson"} }
 
   it "#getUsersBlogs" do

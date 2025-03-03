@@ -41,6 +41,7 @@ module Rubypress
     def connection
       if @connection.nil?
         @connection = XMLRPC::Client.new(self.host, self.path, (self.use_ssl ? self.ssl_port : self.port),nil,nil,self.http_user,self.http_password,self.use_ssl,self.timeout)
+        @connection.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         @connection.http_header_extra = {'accept-encoding' => 'identity'}
         @connection.extend(XMLRPCRetryable) if retry_timeouts
         @connection.cookie = self.cookie unless self.cookie.nil?

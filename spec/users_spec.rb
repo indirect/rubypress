@@ -23,7 +23,10 @@ describe "#users" do
 
   it "#editProfile" do
     VCR.use_cassette("editProfile") do
-      CLIENT.editProfile({:content => edited_profile_content}).should eq(true)
+      Proc.new do
+        CLIENT.editProfile({:content => edited_profile_content}).should eq(true)
+      end.should raise_error(RuntimeError)
+      CLIENT.instance_eval { @connection }.http_last_response.code.should eq "401"
     end
   end
 

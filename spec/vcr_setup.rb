@@ -13,6 +13,10 @@ sensitive_data = [
   'WORDPRESS_HTTP_PATH'
 ]
 
+require "webmock"
+
+WebMock.disable_net_connect!(net_http_connect_on_start: true)
+
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :webmock

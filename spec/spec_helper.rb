@@ -19,6 +19,7 @@ end
 
 RSpec.configure do |config|
   load_env
+  config.expect_with(:rspec) { |c| c.syntax = :should }
 end
 
 CLIENT_OPTS = {

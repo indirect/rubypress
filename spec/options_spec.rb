@@ -6,7 +6,7 @@ describe "#options" do
 
   it "#getOptions" do
     VCR.use_cassette("getOptions") do
-      CLIENT.getOptions.should include("license" => {"desc"=>"License", "readonly"=>false, "value"=>"MIT"})
+      CLIENT.getOptions.should include("baseURL" => {"desc"=>"Baseurl", "readonly"=>false, "value"=>"https://andre.arko.net/"})
     end
   end
 

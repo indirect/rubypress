@@ -19,7 +19,16 @@ end
 
 RSpec.configure do |config|
   load_env
-  config.expect_with(:rspec) { |c| c.syntax = :should }
+
+  config.expect_with :rspec do |expectations|
+    expectations.syntax = [:should, :expect]
+  end
+
+  config.mock_with :rspec do |mocks|
+    mocks.syntax = [:should, :expect]
+  end
+
+  config.raise_errors_for_deprecations!
 end
 
 CLIENT_OPTS = {

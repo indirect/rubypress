@@ -22,7 +22,7 @@ describe "#post" do
 
   it "#getPosts" do
     VCR.use_cassette("getPosts") do
-      CLIENT.getPosts[0].should include("post_id")
+      CLIENT.getPosts.should include(hash_including("post_id" => post_id))
     end
   end
 

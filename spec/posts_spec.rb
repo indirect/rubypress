@@ -6,13 +6,14 @@ describe "#post" do
 
   it "#newPost" do
     VCR.use_cassette("newPost") do
-      POST_ID = CLIENT.newPost({:content => post})
-      POST_ID.should =~ STRING_NUMBER_REGEX
+      id = CLIENT.newPost({:content => post})
+      id.should =~ /#{Date.today.iso8601}-5-ways-to-know-youre-cool/
     end
   end
 
   it "#getPost" do
     VCR.use_cassette("getPost") do
+      POST_ID = "2025-02-20-housekeeping-notes.md"
       CLIENT.getPost({:post_id => POST_ID}).should include("post_id" => POST_ID)
     end
   end

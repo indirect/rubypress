@@ -46,13 +46,13 @@ describe "#post" do
 
   it "#getPostTypes" do
     VCR.use_cassette("getPostTypes") do
-      CLIENT.getPostTypes.should include("page")
+      CLIENT.getPostTypes.should include("post")
     end
   end
 
   it "#getPostFormats" do
     VCR.use_cassette("getPostFormats") do
-      CLIENT.getPostFormats.should include("image" => "Image")
+      CLIENT.getPostFormats.should include("standard" => "Standard")
     end
   end
 

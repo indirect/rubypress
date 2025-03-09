@@ -4,17 +4,19 @@ describe "#post" do
 
   let(:post){ {:post_type => "post", :post_status => "draft", :post_title => "5 Ways to Know You're Cool", :post_content => "I don't always write tests, but when I do, I use RSpec."} }
 
-  it "#newPost" do
+  let(:post_id) do
     VCR.use_cassette("newPost") do
-      id = CLIENT.newPost({:content => post})
-      id.should =~ /#{Date.today.iso8601}-5-ways-to-know-youre-cool/
+      CLIENT.newPost({:content => post})
     end
+  end
+
+  it "#newPost" do
+    post_id.should =~ /#{Date.today.iso8601}-5-ways-to-know-youre-cool/
   end
 
   it "#getPost" do
     VCR.use_cassette("getPost") do
-      POST_ID = "2025-02-20-housekeeping-notes"
-      CLIENT.getPost({:post_id => POST_ID}).should include("post_id" => POST_ID)
+      CLIENT.getPost({:post_id => post_id}).should include("post_id" => post_id)
     end
   end
 
@@ -26,13 +28,13 @@ describe "#post" do
 
   it "#editPost" do
     VCR.use_cassette("editPost") do
-      CLIENT.editPost({:post_id => POST_ID, :content => post}).should eq(true)
+      CLIENT.editPost({:post_id => post_id, :content => post}).should eq(true)
     end
   end
 
   it "#deletePost" do
     VCR.use_cassette("deletePost") do
-      CLIENT.deletePost({:post_id => POST_ID}).should eq(true)
+      CLIENT.deletePost({:post_id => post_id}).should eq(true)
     end
   end
 

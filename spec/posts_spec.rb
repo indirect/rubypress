@@ -13,7 +13,7 @@ describe "#post" do
 
   it "#getPost" do
     VCR.use_cassette("getPost") do
-      POST_ID = "2025-02-20-housekeeping-notes.md"
+      POST_ID = "2025-02-20-housekeeping-notes"
       CLIENT.getPost({:post_id => POST_ID}).should include("post_id" => POST_ID)
     end
   end
